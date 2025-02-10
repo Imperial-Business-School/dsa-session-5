@@ -29,4 +29,4 @@ def test_selection_sort_1():
     run_ok_test("test_ses05_solution_selection_sort_1")
 
 def test_sort_by_key_0():
-    run_ok_test("test_ses05_solution_sort_by_key_0.py")
+    run_ok_test("test_ses05_solution_sort_by_key_0")

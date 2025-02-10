@@ -1,20 +1,20 @@
 test = {
-  'name': 'test_ses04_solution_linear_search_index_1',
+  'name': 'test_ses05_solution_find_min_index_0',
   'points': 1,
   'suites': [
     {
       'cases': [
         {
           'code': r"""
-          >>> linear_search_index([1, 3, 9, 4, 5, 6], 2)
-          -1
+          >>> find_min_index([1, 2, 5, -1], 0)
+          3
           """,
           'hidden': False
         }
       ],
       'scored': True,
       'setup': r"""
-      >>> from ses04 import *
+      >>> from ses05 import *
       """,
       'teardown': '',
       'type': 'doctest'

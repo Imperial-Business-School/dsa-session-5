@@ -17,7 +17,7 @@ jobs:
     - name: Move tests
       run: rm -rf tests/ && mv .github/workflows/tests tests
     - name: Move .ok file
-      run: rm ses04.ok && mv .github/workflows/ses04.ok ses04.ok
+      run: rm ses05.ok && mv .github/workflows/ses05.ok ses05.ok
     - name: Move test script
       run: mv .github/workflows/ok_to_pytest.py test_ok.py
     - name: Python test
@@ -25,7 +25,7 @@ jobs:
       uses: classroom-resources/autograding-python-grader@v1
       with:
         timeout: 1
-        max-score: 4
+        max-score: 5
         setup-command: 'pip install pandas==2.1.4 jupyter==1.0.0 networkx==3.2.1'
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1

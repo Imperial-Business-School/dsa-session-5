@@ -1,20 +1,20 @@
 test = {
-  'name': 'test_ses04_solution_binary_search_count_1',
+  'name': 'test_ses05_solution_selection_sort_0',
   'points': 1,
   'suites': [
     {
       'cases': [
         {
           'code': r"""
-          >>> binary_search_count([1, 3, 4, 5, 6, 6, 7], 5)
-          (True, 1)
+          >>> selection_sort([3, 6, 8, 2, 78, 1, 23, 45, 9])
+          [1, 2, 3, 6, 8, 9, 23, 45, 78]
           """,
           'hidden': False
         }
       ],
       'scored': True,
       'setup': r"""
-      >>> from ses04 import *
+      >>> from ses05 import *
       """,
       'teardown': '',
       'type': 'doctest'

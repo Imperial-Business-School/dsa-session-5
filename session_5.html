@@ -3,7 +3,7 @@
 <html lang="en">
 <head><meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>session_4</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
+<title>session_5</title><script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.10/require.min.js"></script>
 <style type="text/css">
     pre { line-height: 125%; }
 td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
@@ -7516,30 +7516,26 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h1 id="Session-4:-Computational-complexity-and-search-algorithms">Session 4: Computational complexity and search algorithms<a class="anchor-link" href="#Session-4:-Computational-complexity-and-search-algorithms">¶</a></h1><p><em>Data Structures and Algorithms</em></p>
+<h1 id="Session-5:-Sorting-algorithms">Session 5: Sorting algorithms<a class="anchor-link" href="#Session-5:-Sorting-algorithms">¶</a></h1><p><em>Data Structures and Algorithms</em></p>
 <p><em>Imperial College Business School</em></p>
 <hr/>
-<p>In this session we'll implement search algorithms in Python. We'll also practice the concept of computational complexity.</p>
-<p>We will also start working on the important skill of reading and adding to code written by others.</p>
+<p>In this session we'll implement sorting algorithms in Python.</p>
 <hr/>
 <h2 id="Preparation:">Preparation:<a class="anchor-link" href="#Preparation:">¶</a></h2><p><strong>Readings</strong>:</p>
-<p>Guttag: Chapters 11, 12.1.</p>
+<p>Guttag: Chapters 6, 12.2.</p>
 <p><strong>OR</strong></p>
 <p>Miller and Ranum. Problem Solving with Algorithms and Data Structures.</p>
 <ul>
 <li><a href="https://runestone.academy/runestone/books/published/pythonds/index.html">https://runestone.academy/runestone/books/published/pythonds/index.html</a></li>
-<li>Sections 3.1-3.3 (Complexity)</li>
-<li>Sections 6.1-6.4. (Search algorithms)</li>
+<li>Sections 6.6, 6.7, 6.11 (Bubble and merge sort)</li>
+<li>and Section 6.8 for selection sort, introduced in this session</li>
 </ul>
 <p><strong>Questions:</strong></p>
 <p>Please read the material above, and think about how you would explain to your classmates:</p>
 <ul>
-<li>If computers keep getting faster, why do we care about computational
-complexity?</li>
-<li>Why do we not measure complexity simply by the time it takes a
-program to run?</li>
-<li>What is Big-O notation, and why is it useful for measuring
-complexity?</li>
+<li>How do the merge, bubble and selection sort algorithms work?</li>
+<li>Why is merge sort more computationally efficient than bubble or selection
+sort?</li>
 </ul>
 <hr/>
 </div>
@@ -7552,10 +7548,10 @@ complexity?</li>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="Submission">Submission<a class="anchor-link" href="#Submission">¶</a></h2><p>At the end of this session, you will submit the file <code>ses04.py</code> following the instructions below.</p>
+<h2 id="Submission">Submission<a class="anchor-link" href="#Submission">¶</a></h2><p>At the end of this session, you will submit the file <code>ses05.py</code> following the instructions below.</p>
 <ul>
-<li>Questions 1-4 form the main part of the session.</li>
-<li>Questions 5-7 are optional. It is recommended that you work on these if you finish the required questions early, or on your own time as extra practice.</li>
+<li>Questions 1-3 form the main part of the session.</li>
+<li>Questions 4-5 are optional. It is recommended that you work on these if you finish the required questions early, or on your own time as extra practice.</li>
 </ul>
 <h2 id="Using-OK">Using OK<a class="anchor-link" href="#Using-OK">¶</a></h2><p>We will use a program called <code>ok</code> to test our code.</p>
 <p>You should have OK in the Codespace for this session. The session will include instructions for running <code>ok</code> commands as we need them.</p>
@@ -7570,13 +7566,135 @@ complexity?</li>
 </code></pre>
 <p>If you get stuck with how to call <code>ok</code>, please check the first session for more detailed instructions on the system.</p>
 <h2 id="Recap">Recap<a class="anchor-link" href="#Recap">¶</a></h2><h3 id="Question-1:-Recap">Question 1: Recap<a class="anchor-link" href="#Question-1:-Recap">¶</a></h3><p>Let's start by some recap exercises. Run the following command on the command line/terminal:</p>
-<pre><code>python ok -q q1 -u
+<pre><code>python ok -q q1_recap -u
 </code></pre>
-<p>If there's an error, write Error. If there's an infinite loop, write Infinite loop.</p>
-<h2 id="Big-O">Big O<a class="anchor-link" href="#Big-O">¶</a></h2><h3 id="Question-2:-Big-O-practice">Question 2: Big-O practice<a class="anchor-link" href="#Question-2:-Big-O-practice">¶</a></h3><p>Use OK to test your knowledge of Big-O notation. Run the following command on the command line/terminal.</p>
-<pre><code>python ok -q q_big_o -u
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Selection-sort">Selection sort<a class="anchor-link" href="#Selection-sort">¶</a></h2><p>We'll use selection sort to sort a list in ascending order.</p>
+<p>As we saw in the lecture, selection sort algorithm uses searching as a subroutine. In each iteration of the main loop, it searches for the smallest element in the unsearched part of the list and moves it to the end of the searched part.
+The algorithm is as follows:</p>
+<p><strong>Selection sort</strong> of list $L$ of length $n$:</p>
+<ul>
+<li>Initially the list is unsorted: there are zero sorted items</li>
+<li>Main loop:<ul>
+<li>Search for the smallest unsorted element of $L$</li>
+<li>Swap it with the first unsorted item</li>
+<li>There is now one more sorted item</li>
+<li>Repeat until entire $L$ is sorted</li>
+</ul>
+</li>
+</ul>
+<p>In other words, in selection sort, we move the smallest items one by one to the front part of the list. They will then occupy the smallest indices, while the unsorted part will be at the higher indices.</p>
+<p>Let's try to divide the problem into small parts. In each iteration, we do two things:</p>
+<ul>
+<li>Find the smallest of the remaining unsorted items.</li>
+<li>Move this item to the end of the sorted part of the list.</li>
+</ul>
+<p>We'll implement a function for finding the minimum index:</p>
+<ul>
+<li><code>find_min_index(A, k)</code>: Finds the smallest element in the list A from index <code>k</code> onwards. That is, if we have already sorted $k$ items, the function will find the minimum index of the remaining items <code>A[k:]</code>.</li>
+</ul>
+<p>If this function exists and works, our selection sort algorithm will look like this.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [9]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">selection_sort</span><span class="p">(</span><span class="n">M</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Sorts the list M using selection sort</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters:</span>
+<span class="sd">        M is a list of integers</span>
+<span class="sd">    </span>
+<span class="sd">    Returns sorted copy of M.</span>
+<span class="sd">    </span>
+<span class="sd">    Uses find_min_index to find index with lowest value</span>
+<span class="sd">    """</span>
+    <span class="n">L</span> <span class="o">=</span> <span class="n">M</span><span class="p">[:]</span> <span class="c1"># create a copy of the list to also preserve original list</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">L</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">min_index</span> <span class="o">=</span> <span class="n">find_min_index</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">index</span><span class="p">)</span>
+        <span class="c1"># add line of code to swap elements of L at index and min_index</span>
+        
+    <span class="k">return</span> <span class="n">L</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>We start with an unsorted list <code>L</code>. At the first iteration, we look for the smallest value in the entire list with <code>find_min_index</code>. We then swap its position to the front, while the item that was at the front gets moved to the position of the minimum value.</p>
+<p>At each iteration, we similarly look for the smallest value in the remaining unsorted list, and swap it to the front. If the function works, so will our selection sort algorithm.</p>
+<h3 id="Question-2:-Selection-sort">Question 2: Selection sort<a class="anchor-link" href="#Question-2:-Selection-sort">¶</a></h3><p>Your task is to complete the function <code>find_min_index</code> in the Python file <code>ses05.py</code>. You can test your implementation with</p>
+<pre><code>python ok -q find_min_index
 </code></pre>
-<h2 id="Search-algorithms">Search algorithms<a class="anchor-link" href="#Search-algorithms">¶</a></h2><h3 id="Linear-search">Linear search<a class="anchor-link" href="#Linear-search">¶</a></h3><p>In the lecture we started to delve into the mechanics of searching for an item in a list. We first looked at how linear search goes through each element $x$ in list $A$, as defined below.</p>
+<p>And, once complete, the selection sort algorithm with</p>
+<pre><code>python ok -q selection_sort
+</code></pre>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">find_min_index</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">k</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Finds the smallest element in the list A from index k onwards.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters:</span>
+<span class="sd">        A (list)</span>
+<span class="sd">        k: index from which the search for minimum element starts</span>
+<span class="sd">    </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        the index of the minimum element</span>
+<span class="sd">    </span>
+<span class="sd">    Example use:</span>
+<span class="sd">    &gt;&gt;&gt; find_min_index([1, 2, 5, -1], 0)</span>
+<span class="sd">    3</span>
+<span class="sd">    &gt;&gt;&gt; find_min_index([1, 1, 1, 5, 9], 2)</span>
+<span class="sd">    2</span>
+<span class="sd">    """</span>
+    <span class="c1"># DON'T CHANGE ANYTHING ABOVE</span>
+    <span class="c1"># YOUR CODE HERE</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>You can try out the selection sort function in the Python console for randomly generated lists:</p>
 </div>
 </div>
 </div>
@@ -7585,31 +7703,57 @@ complexity?</li>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">linear_search</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">""" </span>
-<span class="sd">    Searches for element x in list A</span>
-<span class="sd">    </span>
-<span class="sd">    Returns True if x found, False otherwise</span>
-<span class="sd">    </span>
-<span class="sd">    Example use:</span>
-<span class="sd">    &gt;&gt;&gt; A = [1, 3, 9, 4, 5, 6]</span>
-<span class="sd">    &gt;&gt;&gt; y = 6</span>
-<span class="sd">    &gt;&gt;&gt; linear_search(A, y)</span>
-<span class="sd">    True</span>
-<span class="sd">    &gt;&gt;&gt; linear_search(A, 15)</span>
-<span class="sd">    False</span>
-<span class="sd">    """</span>
-    <span class="k">for</span> <span class="n">elem</span> <span class="ow">in</span> <span class="n">A</span><span class="p">:</span>          
-        <span class="k">if</span> <span class="n">elem</span> <span class="o">==</span> <span class="n">x</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">True</span>
-    <span class="k">return</span> <span class="kc">False</span>           
-
-<span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">9</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
-<span class="n">y</span> <span class="o">=</span> <span class="mi">6</span>
-<span class="n">linear_search</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">random</span> <span class="c1"># module for random number generation</span>
+<span class="n">list_size</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">list_size</span><span class="p">)]</span>
+<span class="n">A_sorted</span> <span class="o">=</span> <span class="n">selection_sort</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A_sorted</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>[176, 254, 288, 426, 445, 560, 608, 635, 693, 864]
+[445, 254, 693, 176, 635, 560, 864, 426, 608, 288]
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="Built-in-sorting">Built-in sorting<a class="anchor-link" href="#Built-in-sorting">¶</a></h2><p>Searching and sorting are common building blocks in more complex programs and their performance is therefore crucial.
+Whilst designing and writing these algorithms is both fun and useful for developing your algorithmic and coding skills, in practice we usually rely on Python's built-in methods.</p>
+<p>Python gives you an easy method of checking whether an item can be found in a list through the keyword <code>in</code>.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="mi">11</span><span class="p">,</span><span class="mi">9</span><span class="p">,</span><span class="mi">4</span><span class="p">]</span>
+<span class="mi">4</span> <span class="ow">in</span> <span class="n">A</span>
 </pre></div>
 </div>
 </div>
@@ -7620,7 +7764,7 @@ complexity?</li>
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
-<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[14]:</div>
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[3]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
 <pre>True</pre>
 </div>
@@ -7634,26 +7778,7 @@ complexity?</li>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Try it out and make sure you understand how the function works. Notice that the elements of the list do not need to be integers (or indeed numbers).</p>
-<h3 id="Question-3:-Linear-search">Question 3: Linear search<a class="anchor-link" href="#Question-3:-Linear-search">¶</a></h3><p>The linear search algorithm currently only shows us whether the element we were looking were was found in the list, but often we also want to know its position. Modify the program such that it returns the <em>index</em> of the first element, and -1 if the searched element does not occur in the list. Complete the function <code>linear_search_index</code> in <code>ses04.py</code>.</p>
-<p><strong>Hint:</strong> you may want to loop through indices instead of the elements the list. Remember from the previous session that we can loop through list indices using the <code>range()</code> and <code>len()</code> functions.</p>
-<p>Test your solution with the following command on the command line/terminal.</p>
-<pre><code>python ok -q linear_search_index
-</code></pre>
-<h3 id="Binary-search">Binary search<a class="anchor-link" href="#Binary-search">¶</a></h3><p>We saw in the lecture that the worst-case running time of this algorithm is $O(n)$, where $n$ is the length of $A$: that is, if the element we're looking for happen not to be in the list, we have to go through all $n$ elements.</p>
-<p>If we know that our list is sorted, we can do better. How? In the linear search, when going through sorted elements one by one, we would know that if $elem &gt; x$, all remaining elements must also be larger. Therefore $x$ cannot be in $A$ and we can stop the search. This would avoid lots of unnecessary searching, but does it improve the worst-case performance of linear search?</p>
-<p>A better solution is to use <strong>binary search</strong>. We defined the algorithm in the lecture using the following "recipe" to search for item $x$ in list $A$.</p>
-<ul>
-<li>Pick an index $midpoint$ roughly dividing $A$ in half</li>
-<li>If there is nothing left to search, stop and return -1</li>
-<li>If $A[midpoint] == x$, return True</li>
-<li>If not:<ul>
-<li>If $A[midpoint] &gt; x$, search the left half of $A$</li>
-<li>Otherwise search the right half</li>
-</ul>
-</li>
-</ul>
-<p>We translated this into a Python program as follows.</p>
+<p>You can either sort a list using <code>list.sort()</code> or create a sorted copy using <code>sorted</code>. You can specify whether the sorting is ascending or descending.</p>
 </div>
 </div>
 </div>
@@ -7662,38 +7787,13 @@ complexity?</li>
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [5]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">binary_search</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">"""</span>
-<span class="sd">    Binary search for element x in list A</span>
-<span class="sd">    </span>
-<span class="sd">    Parameters:</span>
-<span class="sd">        A: list with elements in ascending order.</span>
-<span class="sd">        x: the element we're searching for.</span>
-<span class="sd">   </span>
-<span class="sd">    Returns True if x found in x, False otherwise</span>
-<span class="sd">    </span>
-<span class="sd">    &gt;&gt;&gt; binary_search([1, 3, 4], -1)</span>
-<span class="sd">    False</span>
-<span class="sd">    &gt;&gt;&gt; binary_search([1, 3, 4, 5, 6, 6, 7], 7)</span>
-<span class="sd">    True</span>
-<span class="sd">    """</span>
-    
-    <span class="c1"># Initialize the search to cover entire list</span>
-    <span class="n">low</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">high</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span> 
-    <span class="k">while</span> <span class="n">low</span> <span class="o">&lt;=</span> <span class="n">high</span><span class="p">:</span>
-        <span class="n">midpoint</span> <span class="o">=</span> <span class="p">(</span><span class="n">low</span> <span class="o">+</span> <span class="n">high</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span>
-        <span class="n">guess</span> <span class="o">=</span> <span class="n">A</span><span class="p">[</span><span class="n">midpoint</span><span class="p">]</span>
-        <span class="k">if</span> <span class="n">guess</span> <span class="o">==</span> <span class="n">x</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">True</span>
-        <span class="k">elif</span> <span class="n">guess</span> <span class="o">&gt;</span> <span class="n">x</span><span class="p">:</span>
-            <span class="n">high</span> <span class="o">=</span> <span class="n">midpoint</span> <span class="o">-</span> <span class="mi">1</span> 
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">low</span> <span class="o">=</span> <span class="n">midpoint</span> <span class="o">+</span> <span class="mi">1</span> 
-    <span class="k">return</span> <span class="kc">False</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">A</span><span class="o">.</span><span class="n">sort</span><span class="p">()</span>
+<span class="n">B</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">A</span><span class="p">)</span> <span class="c1"># sorts ascending</span>
+<span class="n">B</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span> <span class="c1"># sorts descending order</span>
+<span class="n">B</span><span class="o">.</span><span class="n">reverse</span><span class="p">()</span> <span class="c1"># we can always reverse result</span>
 </pre></div>
 </div>
 </div>
@@ -7706,49 +7806,7 @@ complexity?</li>
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Question-4:-Binary-search">Question 4: Binary search<a class="anchor-link" href="#Question-4:-Binary-search">¶</a></h3><p>How many iterations of the while loop does binary search actually do? Your task is to modify the algorithm to keep track of this. Complete the function <code>binary_search_count</code> given in the Python file <code>ses04.py</code>.</p>
-<p><strong>Hint:</strong> the search will work just as before. Now, you'll need to define a new variable, for example called <code>counter</code>, which increases at every iteration, and gets returned together with the index. A function can return several values simply through a statement like</p>
-</div>
-</div>
-</div>
-</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
-<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
-<div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="k">return</span> <span class="n">a</span><span class="p">,</span><span class="n">b</span>
-</pre></div>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>This will return the values in the form <code>(a, b)</code>, which is called a <em>tuple</em>. Tuples are similar to lists, but they are immutable: we cannot change the elements. We will see more tuples later in the module.</p>
-<p>Test your solution with the following command on the command line/terminal.</p>
-<pre><code>python ok -q binary_search_count
-</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
-<div class="jp-Cell-inputWrapper" tabindex="0">
-<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
-</div>
-<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
-</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Built-in-search">Built-in search<a class="anchor-link" href="#Built-in-search">¶</a></h3><p>Searching and sorting are common building blocks in more complex programs and their performance is therefore crucial.
-Whilst designing and writing these algorithms is both fun and useful for developing your algorithmic and coding skills, in practice we usually rely on Python's built-in methods.</p>
-<p>Python provides very efficient search algorithms, so we don't need to use our own in everyday problems. We can check whether an item can be found in a list using the keyword <code>in</code> as follows:</p>
+<p>Sorting in Python is flexible. We can sort using different <em>keys</em>. For example, we can sort a list of strings by the length of the string.</p>
 </div>
 </div>
 </div>
@@ -7757,12 +7815,11 @@ Whilst designing and writing these algorithms is both fun and useful for develop
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [4]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [14]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">'a'</span><span class="p">,</span> <span class="s1">'4'</span><span class="p">]</span>
-<span class="nb">print</span><span class="p">(</span><span class="mi">4</span> <span class="ow">in</span> <span class="n">L</span><span class="p">)</span>
-<span class="nb">print</span><span class="p">(</span><span class="mi">3</span> <span class="ow">in</span> <span class="n">L</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Mark'</span><span class="p">,</span> <span class="s1">'Shruti'</span><span class="p">,</span> <span class="s1">'Xu'</span><span class="p">,</span> <span class="s1">'Jennifer'</span><span class="p">]</span>
+<span class="nb">sorted</span><span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nb">len</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7772,12 +7829,10 @@ Whilst designing and writing these algorithms is both fun and useful for develop
 <div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
 </div>
 <div class="jp-OutputArea jp-Cell-outputArea">
-<div class="jp-OutputArea-child">
-<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
-<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
-<pre>False
-True
-</pre>
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[14]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>['Xu', 'Mark', 'Shruti', 'Jennifer']</pre>
 </div>
 </div>
 </div>
@@ -7789,7 +7844,7 @@ True
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>If we want to find the index of an item, we can use the <code>index</code> method:</p>
+<p>How does this work? Conveniently, we can specify a <em>key function</em> as an argument for <code>sorted</code>. It will then sort the list based on this function being applied to all the elements of the list. The kicker is that we can <em>define the key function ourselves</em>. For example, we can sort tuples by the second element.</p>
 </div>
 </div>
 </div>
@@ -7801,7 +7856,10 @@ True
 <div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="n">L</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="s1">'a'</span><span class="p">)</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_last_name</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+<span class="n">names</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">'Theresa'</span><span class="p">,</span> <span class="s1">'May'</span><span class="p">),</span> <span class="p">(</span><span class="s1">'Jo'</span><span class="p">,</span> <span class="s1">'Johnson'</span><span class="p">),</span> <span class="p">(</span><span class="s1">'Boris'</span><span class="p">,</span> <span class="s1">'Johnson'</span><span class="p">),</span> <span class="p">(</span><span class="s1">'Jeremy'</span><span class="p">,</span> <span class="s1">'Corbyn'</span><span class="p">)]</span> <span class="c1"># list of tuples: (first_name, last_name)</span>
+<span class="nb">sorted</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">get_last_name</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -7814,7 +7872,10 @@ True
 <div class="jp-OutputArea-child jp-OutputArea-executeResult">
 <div class="jp-OutputPrompt jp-OutputArea-prompt">Out[3]:</div>
 <div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
-<pre>2</pre>
+<pre>[('Jeremy', 'Corbyn'),
+ ('Jo', 'Johnson'),
+ ('Boris', 'Johnson'),
+ ('Theresa', 'May')]</pre>
 </div>
 </div>
 </div>
@@ -7826,23 +7887,102 @@ True
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="All-done!">All done!<a class="anchor-link" href="#All-done!">¶</a></h2><p>That's it for the main exercises.</p>
-<h3 id="Submission">Submission<a class="anchor-link" href="#Submission">¶</a></h3><p>To submit the exercises, please follow these instructions from your GitHub Codespace:</p>
+<p>The <code>sorted</code> function applies the key function to each item before doing the sorting on these values. The key function may also return multiple values, in which case we can sort by multiple attributes, for example first by last name, then by first name.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [8]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">get_last_name_first_name</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="n">x</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+<span class="n">names</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">'Theresa'</span><span class="p">,</span> <span class="s1">'May'</span><span class="p">),</span> <span class="p">(</span><span class="s1">'Jo'</span><span class="p">,</span> <span class="s1">'Johnson'</span><span class="p">),</span> <span class="p">(</span><span class="s1">'Boris'</span><span class="p">,</span> <span class="s1">'Johnson'</span><span class="p">),</span> <span class="p">(</span><span class="s1">'Jeremy'</span><span class="p">,</span> <span class="s1">'Corbyn'</span><span class="p">)]</span> <span class="c1"># list of tuples: (first_name, last_name)</span>
+<span class="nb">sorted</span><span class="p">(</span><span class="n">names</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">get_last_name_first_name</span><span class="p">)</span> 
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[8]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>[('Jeremy', 'Corbyn'),
+ ('Boris', 'Johnson'),
+ ('Jo', 'Johnson'),
+ ('Theresa', 'May')]</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>We can define any such comparison function that operates on each item of a list that returns a value (or many values) and allows a total ordering of the items.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Question-3:-Sorting-keys">Question 3: Sorting keys<a class="anchor-link" href="#Question-3:-Sorting-keys">¶</a></h3><p>Now, complete the function <code>sort_by_key</code> in <code>ses05.py</code>. The function should sort a list in descending order using a specified key function. You'll also need to complete the auxiliary function <code>get_unemployment</code> to work in conjunction with <code>sort_by_key</code>. When you are ready, test your function in OK with the following command:</p>
+<pre><code>python ok -q sort_by_key
+</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<blockquote>
+<p><strong>Advanced.</strong> How does Python do its sorting? It uses an algorithm called <strong>timsort</strong>, which has worst-case running time $O(n\log n)$ just like merge sort, but is faster on average. In fact, it turns out that $O(n\log n)$ is a theoretical bound for how fast you can expect to sort in the worst case. Timsort's is faster on average because it exploits the fact that many lists have some order to begin with, and finding such ordered sequences saves time compared to straight-up sorting. However, the cost is that timsort is conceptually quite a bit more complex than merge sort (just like merge sort is conceptually more complex than selection sort). If you want to understand a state-of-the art sorting algorithm, look up <a href="https://en.wikipedia.org/wiki/Timsort">timsort on Wikipedia</a>. While you're at it, there are many other well-known sorting algorithms that we don't go through here: for example insertion sort, bubble sort, quicksort, radix sort, just to name a few.</p>
+</blockquote>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h2 id="All-done!">All done!<a class="anchor-link" href="#All-done!">¶</a></h2><p>That's it for the exercises.</p>
+<p>To submit the exercises, please follow these instructions from your GitHub Codespace:</p>
 <ol>
 <li>Test all your functions using the above <code>ok</code> commands.</li>
 <li>Open the <code>Source Control</code> menu on the left-hand panel of VS Code and enter any message in the message field (e.g. "submit")</li>
 <li>Click the blue/green button once (to <code>Commit</code>), and then a second time (to <code>Sync</code>).</li>
 <li>There should be no files visible in the <code>Source Control</code> menu if submission succeeded.</li>
 </ol>
-<h2 id="Review">Review<a class="anchor-link" href="#Review">¶</a></h2><p>We've looked at the canonical computer science problem of search, and introduced a language for describing the complexity of computational problems.</p>
+<h2 id="Review">Review<a class="anchor-link" href="#Review">¶</a></h2><p>Today we've looked at the classic problem of sorting.</p>
 <p>How would you explain to your classmates:</p>
 <ul>
-<li>What is big O notation, and for what do we use it?</li>
-<li>Why is it not enough to measure the time a computer takes to run a program?</li>
-<li>What is the difference between the linear and binary search algorithms?</li>
-<li>When can we use binary search?</li>
+<li>How do bubble and selection sort work? How do we know its complexity is $O(n^2)$?</li>
+<li>How does merge sort work, and what is its complexity?</li>
+<li>How do we sort lists in practice in Python?</li>
 </ul>
-<h2 id="Optional-exercises">Optional exercises<a class="anchor-link" href="#Optional-exercises">¶</a></h2>
+<h2 id="Optional-Questions">Optional Questions<a class="anchor-link" href="#Optional-Questions">¶</a></h2><p>In the optional questions, you'll have a chance to try out recursion and implement the blazingly fast merge sort algorithm.</p>
 </div>
 </div>
 </div>
@@ -7853,17 +7993,332 @@ True
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Question-5:-More-Big-O">Question 5: More Big-O<a class="anchor-link" href="#Question-5:-More-Big-O">¶</a></h3><p>Try out some challenge questions on algorithm complexity. Run the following command on the command line/terminal.</p>
-<pre><code>python ok -q q_big_o_extra -u
-</code></pre>
-<h3 id="Question-6:-Is-it-sorted?">Question 6: Is it sorted?<a class="anchor-link" href="#Question-6:-Is-it-sorted?">¶</a></h3><p>How do we know if a list is sorted? Write an algorithm to check if this is the case for any list. Complete the function <code>check_sorted</code> in the file <code>ses04_extra.py</code>. You'll need to use a loop - what should happen inside it?</p>
-<p>Test your solution with the following command on the command line/terminal.</p>
-<pre><code>python ok -q check_sorted
-</code></pre>
-<h3 id="Question-7:-Increasing-streaks">Question 7: Increasing streaks<a class="anchor-link" href="#Question-7:-Increasing-streaks">¶</a></h3><p>We often look for patterns in data, for example stock prices. Write an algorithm to find the longest increasing streak in a list of numbers, that is, the longest ascending subsequence. Complete the function <code>longest_sorted</code> in the file <code>ses04_extra.py</code>. What kind of looping do you need now?</p>
-<p>Test your solution with the following command on the command line/terminal.</p>
-<pre><code>python ok -q longest_sorted
-</code></pre>
+<h3 id="Advanced-material:-A-sidebar-on-mutability-and-altering-lists-within-functions">Advanced material: A sidebar on mutability and altering lists within functions<a class="anchor-link" href="#Advanced-material:-A-sidebar-on-mutability-and-altering-lists-within-functions">¶</a></h3><p>You may have noticed that when defining <code>selection_sort</code>, we first created a copy of the original list with the command</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">L</span> <span class="o">=</span> <span class="n">M</span><span class="p">[:]</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Why did we do this? If we change the function to work without this command (for example by just setting <code>L=M</code>), what happens is that <em>not just the returned list, but the original input list is also sorted</em>. That is, we would get the following result:</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [10]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="mi">132</span><span class="p">,</span> <span class="mi">250</span><span class="p">,</span> <span class="mi">398</span><span class="p">,</span> <span class="mi">599</span><span class="p">,</span> <span class="mi">667</span><span class="p">,</span> <span class="mi">689</span><span class="p">,</span> <span class="mi">699</span><span class="p">,</span> <span class="mi">708</span><span class="p">,</span> <span class="mi">808</span><span class="p">,</span> <span class="mi">906</span><span class="p">]</span>
+<span class="n">A_sorted</span> <span class="o">=</span> <span class="n">selection_sort</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A_sorted</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">A</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child">
+<div class="jp-OutputPrompt jp-OutputArea-prompt"></div>
+<div class="jp-RenderedText jp-OutputArea-output" data-mime-type="text/plain" tabindex="0">
+<pre>[132, 250, 398, 599, 667, 689, 699, 708, 808, 906]
+[132, 250, 398, 599, 667, 689, 699, 708, 808, 906]
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>This is a surprising side effect. It happens because Python lists, unlike integers and strings, are <em>mutable</em>: we can change their values "in place". With a mutable object like a list, if we don't create a copy of it, both the name within the function call and the original name for the list will point to the same list object with data in memory - if we alter the data for example by swapping items, the original name will also keep pointing to this changed list. Copying the list with <code>L = M[:]</code> avoids this by creating a separate object which we'll then sort without affecting the original.</p>
+<p>This side effect does not occur with <em>immutable</em> objects like integers, because their values technically cannot be changed. When we cange the value of an integer with a name, Python creates a new object in the computer memory with the new value, and points the name to the new value.</p>
+<p>Because of such side effects, we need to be careful when working with list data "in place", that is, without creating a copy of the data. Sometimes we may want to change the list in place; other times we also want to preserve the original.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Recursion">Recursion<a class="anchor-link" href="#Recursion">¶</a></h3><p>As we saw in the lecture, a function can also call itself. This is called <em>recursion</em>. It is a powerful tool we can use to build algorithms in situations where <em>we can express our problem as a smaller version of itself</em>.</p>
+<p>Let's look at an example. A factorial of an integer $n$ is defined as the product of all integers $1\times 2 \times ... \times n-1 \times n$.</p>
+<p>How would we calculate a factorial in Python? One way to do so would be using a loop.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [16]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">factorial_iter</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="n">n</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">result</span> <span class="o">*=</span> <span class="n">i</span>
+    <span class="k">return</span> <span class="n">result</span>
+
+<span class="n">factorial_iter</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell-outputWrapper">
+<div class="jp-Collapser jp-OutputCollapser jp-Cell-outputCollapser">
+</div>
+<div class="jp-OutputArea jp-Cell-outputArea">
+<div class="jp-OutputArea-child jp-OutputArea-executeResult">
+<div class="jp-OutputPrompt jp-OutputArea-prompt">Out[16]:</div>
+<div class="jp-RenderedText jp-OutputArea-output jp-OutputArea-executeResult" data-mime-type="text/plain" tabindex="0">
+<pre>6</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Instead of a for loop, we can also use a recursive approach. The recursive method starts the idea that the factorial problem can be expressed in terms of smaller versions of itself. That is, if we think about how the multiplication works for each factorial, we notice that each factorial is the previous factorial multiplied by the current $n$. That is:
+$$
+\text{factorial}(2) = 2\times1 = 2\times \text{factorial}(1)\\
+\text{factorial}(3) = 3\times2\times1 = 3\times \text{factorial}(2)\\
+\text{factorial}(4) = 4 \times 3 \times 2 \times 1 =  4\times \text{factorial}(3)
+$$
+and so on. This is like Russian dolls: there's always a smaller factorial inside - except for the factorial of 1, which is called the <em>base case</em> of this recursion. For the base case, we can state the solution non-recursively. In this case,
+$$
+\text{factorial}(1) = 1.
+$$
+If we combine these ideas, we have:
+$$
+\text{factorial}(n) = 1  \text{  for  } n = 1\\
+\text{factorial}(n) = n*\text{factorial}(n-1) \text{  for  } n &gt; 1
+$$</p>
+<p>Let's think about this as a function. In the base case $n=1$, the function returns 1. In the general case $n&gt;1$, it returns $n$ times the factorial of $n-1$. In other words, the function calls itself. We can write this out in Python.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">factorial</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">n</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="mi">1</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">n</span> <span class="o">*</span> <span class="n">factorial</span><span class="p">(</span><span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>Here's a <a href="http://pythontutor.com/visualize.html#code=def%20factorial%28n%29%3A%0A%20%20%20%20if%20n%20%3D%3D%201%3A%0A%20%20%20%20%20%20%20%20return%201%0A%20%20%20%20else%3A%0A%20%20%20%20%20%20%20%20return%20n%20*%20factorial%28n-1%29%0A%20%20%20%20%20%20%20%20%0A%0Aprint%28factorial%284%29%29&amp;cumulative=false&amp;curInstr=0&amp;heapPrimitives=false&amp;mode=display&amp;origin=opt-frontend.js&amp;py=3&amp;rawInputLstJSON=%5B%5D&amp;textReferences=false">visualization</a> of how this code works. Notice how the recursion generates new function calls for each case until it reaches the base case. These calls are then resolved in the opposite order. We have written a function that solves the problem without either a for loop or a while loop - instead, this approach works by breaking the problem down to smaller versions of itself, and solving those in turn.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Question-4:-Fibonacci">Question 4: Fibonacci<a class="anchor-link" href="#Question-4:-Fibonacci">¶</a></h3><p>The <a href="https://en.wikipedia.org/wiki/Fibonacci_number">Fibonacci sequence</a> is defined recursively as follows:</p>
+<p>$$F(n) = F(n-1) + F(n-2), n &gt; 1$$</p>
+<p>$$F(0) = 0 \text{  and  } F(1) = 1$$</p>
+<p>The study of this sequence dates back to at least 200BC India, but it is named after a medieval Italian mathematician known as Fibonacci. Fibonacci numbers appear often not only in mathematics (where they define the golden ratio) but fascinatingly also in the nature, for example in the arrangement of leaves on tree branches. The golden ratio resulting from the sequence is also common in the arts and architecture.</p>
+<p><img alt="Flicker user: Peter K. Levy" src="https://c1.staticflickr.com/2/1482/26022021566_73927eabba_b.jpg" style="width: 600px;"/></p>
+<p>Your task is to write a recursive Python function that takes as input an integer $n$ and returns the Fibonacci number corresponding to $n$. Complete the function <code>recursive_fibonacci</code> in <code>ses05_extra.py</code></p>
+<p>You can test your implementation with</p>
+<p><code>python ok -q recursive_fibonacci</code></p>
+<p>Now try your algorithm with larger values of $n$, for example $n = 10$ and $n=20$. The calculation will slow down. Why is this? Is the recursive design efficient?</p>
+<p>The Fibonacci sequence is an example where the problem looks well suited for a recursive approach, but the implementation becomes problematic. Can you come up with a faster iterative solution?</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<h3 id="Merge-sort">Merge sort<a class="anchor-link" href="#Merge-sort">¶</a></h3><p>Let's return to sorting. Although the bubble and selection sort algorithms are intuitive, it is not as fast as we would hope for: its running time is $O(n^2)$ for $n$ items. We can do better by other algorithms, for example using merge sort, which is a recursive "divide-and-conquer" algorithm. It significantly improves the complexity of sorting to $O(n\log n)$.</p>
+<p>The merge sort algorithm is given below. We will use the idea of recursion. We start with a list you want to sort. We identify a <em>base case</em> for which sorting is easy: if the length of a list is no greater than one, the list is obviously sorted. So we recursively divide the list roughly in half as many times as it requires to reach this base case - approximately $\log n$ times. We then combine these results together at each level of recursion and return the result. This combining is called <em>merging</em> lists, and the exact procedure is given in the algorithm below. As it turns out, each level of recursion requires $O(n)$ work. So merge sort in total has $O(n\log n)$ complexity.</p>
+<p><strong>Merge sort</strong></p>
+<ul>
+<li>Base case: if list length $n \le 1$, the list is sorted: return the list itself</li>
+<li>Divide: if list length $n &gt; 1$, split the list in the middle into two smaller lists and recursively merge sort each</li>
+<li>Combine (merge) the two (sorted) lists:<ul>
+<li>Initialize an empty <code>result</code> list</li>
+<li>Look at first element of each list, add smaller to end of <code>result</code></li>
+<li>Move to the next item in the list which had the smaller item, repeat</li>
+<li>When all items of one of the lists have been added to <code>result</code>, copy the rest of the other list to <code>result</code></li>
+</ul>
+</li>
+<li>Return the result of merging</li>
+</ul>
+<h3 id="Question-5:-Merge-sort">Question 5: Merge sort<a class="anchor-link" href="#Question-5:-Merge-sort">¶</a></h3><p>Complete the merge sort algorithm in the skeleton file. Below you'll find skeleton code for the <code>merge</code> subroutine and the <code>merge_sort</code> algorithm, both of which you'll complete in the file <code>ses05_extra.py</code>. You can test your implementation with</p>
+<p><code>python ok -q merge</code></p>
+<p><code>python ok -q merge_sort</code></p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [3]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">merge</span><span class="p">(</span><span class="n">left</span><span class="p">,</span> <span class="n">right</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Merge two sorted lists into one</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters: </span>
+<span class="sd">        left and right are sorted lists</span>
+<span class="sd">       </span>
+<span class="sd">    Returns a single sorted list.</span>
+<span class="sd">    </span>
+<span class="sd">    Example use:</span>
+<span class="sd">    &gt;&gt;&gt; left = [1, 5, 6]</span>
+<span class="sd">    &gt;&gt;&gt; right = [2, 3, 4]</span>
+<span class="sd">    &gt;&gt;&gt; merge(left, right)</span>
+<span class="sd">    [1, 2, 3, 4, 5, 6]</span>
+<span class="sd">    """</span>
+    <span class="c1"># YOUR CODE BELOW</span>
+    <span class="c1"># DON'T CHANGE ANYTHING ABOVE</span>
+    
+    <span class="c1"># This is one possible approach:</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1"># the result of merging</span>
+    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># Loop index for left list</span>
+    <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># Loop index for right list</span>
+
+    <span class="k">while</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">left</span><span class="p">)</span> <span class="ow">and</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">right</span><span class="p">):</span>
+        <span class="c1"># Loop through lists comparing items at indices i and j</span>
+        <span class="c1"># In each iteration append the smaller item to result</span>
+        <span class="c1"># Stop loop when one list fully copied</span>
+    
+    <span class="c1"># When one full list is fully copied, what do you need to do?</span>
+    <span class="k">return</span> <span class="n">result</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">merge_sort</span><span class="p">(</span><span class="n">L</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Sort the input list using the merge sort algorithm.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters:</span>
+<span class="sd">        L is an unsorted list</span>
+<span class="sd">        </span>
+<span class="sd">    Returns:</span>
+<span class="sd">        L sorted in increasing order</span>
+<span class="sd">    </span>
+<span class="sd">    Examples:</span>
+<span class="sd">    &gt;&gt;&gt; merge_sort([3, 6, 8, 2, 78, 1, 23, 45, 9])</span>
+<span class="sd">    [1, 2, 3, 6, 8, 9, 23, 45, 78]</span>
+<span class="sd">    &gt;&gt;&gt; merge_sort([1, 13, -23, 2.7, -3, 5, 7.5])</span>
+<span class="sd">    [-23, -3, 1, 2.7, 5, 7.5, 13]</span>
+<span class="sd">    """</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">L</span><span class="p">)</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">:</span> <span class="c1"># Base case - list is max one item, so sorted</span>
+        <span class="k">return</span> <span class="n">L</span><span class="p">[:]</span> <span class="c1"># Return (copy of) the entire list</span>
+    <span class="k">else</span><span class="p">:</span> <span class="c1"># General case: split and sort each half, then merge</span>
+        <span class="n">middle</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">L</span><span class="p">)</span><span class="o">//</span><span class="mi">2</span>
+        <span class="c1"># recursively merge sort left of middle and right of middle </span>
+        <span class="c1"># merge the results</span>
+        <span class="k">return</span> <span class="n">____</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>How big is the speed difference in practice? You can make time comparisons between merge sort and selection sort by the <code>%timeit</code> command in the Python console.</p>
+</div>
+</div>
+</div>
+</div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea">
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
+<div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
+<div class="cm-editor cm-s-jupyter">
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">random</span> <span class="c1"># load a library for generating random numbers</span>
+<span class="n">list_size</span> <span class="o">=</span> <span class="mi">10000</span>
+<span class="n">A</span> <span class="o">=</span> <span class="p">[</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1000</span><span class="p">)</span> <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">list_size</span><span class="p">)]</span>  <span class="c1"># generate #list_size random integers randomly drawn from range(0,1000)</span>
+<span class="o">%</span><span class="k">timeit</span> merge_sort(A)
+<span class="o">%</span><span class="k">timeit</span> selection_sort(A) 
+</pre></div>
+</div>
 </div>
 </div>
 </div>
